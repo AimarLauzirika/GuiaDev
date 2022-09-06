@@ -1,4 +1,9 @@
 <div>
+    @push('styles')
+        {{-- {{dd(asset('ckeditor/build/ckeditor.js'))}} --}}
+        
+
+    @endpush
     <x-slot>
         <h1 class="text-center text-gray-800 leading-tight">
             @if ($formFunction === 'create')
@@ -56,9 +61,10 @@
                             <x-jet-input-error for="description">@error('description'){{$message}}@enderror</x-jet-input-error>
                         </label>
                         <div>
-                            <label>
+                            <input type="hidden" id="contentValue" value="{{$content}}">
+                            <label wire:ignore>
                                 <p class="mt-auto mr-3">Contenido:</p>
-                                <textarea wire:model="content" id="editor" class="w-full h-72"></textarea>
+                                <textarea wire:model="content" id="editor" class="w-full"></textarea>
                                 <x-jet-input-error for="content">@error('content'){{$message}}@enderror</x-jet-input-error>
                             </label>
                         </div>
@@ -103,4 +109,57 @@
         </div>
     </div>
 
+    @push('scripts')
+        <script src="{{asset('ckeditor/build/ckeditor.js')}}"></script>
+        <script>
+            const contentValue = document.querySelector('#contentValue').value;
+            ClassicEditor
+                .create( document.querySelector( '#editor' ), {
+                    toolbar: {
+                        shouldNotGroupWhenFull: true
+                    },
+                    heading: {
+                        options: [
+                            { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                            { 
+                                model: 'heading1', 
+                                view: {
+                                    name:'h1', 
+                                    classes: ['text-xl', 'text-orange-800', 'font-bold', 'bg-red-50', 'px-1']}, 
+                                title: 'Heading 1', 
+                                class: 'ck-heading_heading1' 
+                            },
+                            { 
+                                model: 'heading2', 
+                                view: {
+                                    name: 'h2',
+                                    classes: ['text-blue-800', 'font-bold', 'text-lg', 'bg-blue-50', 'px-1']}, 
+                                title: 'Heading 2', 
+                                class: 'ck-heading_heading2'
+                            },
+                            { 
+                                model: 'heading3', 
+                                view: {
+                                    name: 'h3', 
+                                    classes: ['font-bold', 'text-md', 'bg-gray-50', 'px-1']},
+                                title: 'Heading 3', 
+                                class: 'ck-heading_heading3' 
+                            },
+                            { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' }
+                        ]
+                    }
+                })
+                .then( editor => {
+                    // console.log(editor);
+                    editor.setData(contentValue)
+                    editor.model.document.on('change:data', () => {
+                        @this.set('content', editor.getData())
+                    })
+                })
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+    
+    @endpush
 </div>

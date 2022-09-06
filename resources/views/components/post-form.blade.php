@@ -1,5 +1,4 @@
-<div>
-    {{-- {{dd($post)}} --}}
+{{-- <div>
     <form action="{{route('posts.'.$action, $post)}}" method="post" class="space-y-5">
         @csrf
         @method($method)
@@ -54,4 +53,4 @@
             <x-jet-button type="submit">{{$btnSubmitContent}}</x-jet-button>
         </div>
     </form>
-</div>
+</div> --}}

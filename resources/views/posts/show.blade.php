@@ -20,7 +20,7 @@
                 <article>
                     <h1 class="text-center text-2xl font-bold my-9">{{$post->title}}</h1>
                     <p class="text-neutral-600 text-sm">{{$post->description}}</p>
-                    <p class="my-10">{{$post->content}}</p>
+                    <p class="my-10">{!!$post->content!!}</p>
                 </article>
             </div>
         </div>
