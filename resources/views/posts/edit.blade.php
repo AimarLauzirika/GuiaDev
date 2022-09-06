@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h1 class="text-center text-gray-800 leading-tight">
             Editar el Post <span class="font-bold text-xl">{{ $post->title }}</span>
@@ -42,4 +42,4 @@
             })
         </script>
     @endpush
-</x-app-layout>
+</x-app-layout> --}}

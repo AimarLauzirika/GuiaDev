@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Livewire\PostCreate;
@@ -41,6 +42,8 @@ Route::get('/subjects/{subject}', SubjectShow::class)->name('subjects.show');
 // Route::get('/subjects/{subject}/edit', SubjectEdit::class)->name('subjects.edit');
 
 Route::get('posts', PostsIndex::class)->name('posts.index');
-Route::get('posts/create', PostForm::class)->name('posts.create');
+Route::get('posts/create', PostForm::class)->middleware('auth')->name('posts.create');
 Route::get('posts/{post}/edit', PostForm::class)->name('posts.edit');
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');

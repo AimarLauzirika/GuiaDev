@@ -6,7 +6,7 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5 bg-">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
                 <table class="min-w-full leading-normal">
                     <thead>
                         <tr>
@@ -18,9 +18,9 @@
                             </th>
                             <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 <div class="flex justify-end">
-                                    <p class="mt-auto mr-3">Autor:</p>
-                                    <select wire:model="filterUserId" class="py-1 text-sm">
-                                        <option value="%">Todos</option>
+                                    {{-- <p class="mt-auto mr-3 text-xs">Autor:</p> --}}
+                                    <select wire:model="filterUserId" class="py-1 text-xs">
+                                        <option value="%">Autores</option>
                                         @foreach ($users as $user)
                                         <option value="{{$user->id}}">{{$user->name}}</option>
                                         @endforeach
@@ -28,10 +28,10 @@
                                 </div>
                             </th>
                             <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                <div class="flex justify-end">
-                                    <p class="mt-auto mr-3">Tema:</p>
-                                    <select wire:model="filterSubjectId" class="py-1 text-sm">
-                                        <option value="%">Todos</option>
+                                <div class="flex justify-end text-xs">
+                                    {{-- <p class="mt-auto mr-3">Tema:</p> --}}
+                                    <select wire:model="filterSubjectId" class="py-1 text-xs">
+                                        <option value="%">Temas</option>
                                         @foreach ($subjects as $subject)
                                         <option value="{{$subject->id}}">{{$subject->name}}</option>
                                         @endforeach
@@ -45,13 +45,13 @@
                         <tr class="text-sm hover:bg-neutral-50">
                             <td>
                                 <div href="{{route('posts.show', $post)}}" class="hu cursor-pointer">
-                                    <x-div-post :post="$post">
+                                    <x-post-div :post="$post" class="border-none font-semibold hover:text-emerald-700">
                                         {{$post->title}}
                                         <x-slot name="description">
                                             {{$post->description}}
                                         </x-slot>
                                         <x-slot name="adition"></x-slot>
-                                    </x-div-post>
+                                    </x-post-div>
                                 </div>
                             </td>
                             <td class="text-right px-3">

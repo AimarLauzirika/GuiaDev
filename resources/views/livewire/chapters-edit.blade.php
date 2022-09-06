@@ -54,10 +54,10 @@
     </x-jet-dialog-modal>
     @push('scripts')
 
-        {{-- SortableJS (Drag & Drop)
-        <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script> --}}
+        {{-- SortableJS (Drag & Drop) --}}
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
         <script>
-            import Sortable from 'sortablejs';
+            // import Sortable from 'sortablejs';
             new Sortable(sortable, {
                 handle: '.handle',
                 animation: 150,

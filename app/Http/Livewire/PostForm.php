@@ -46,7 +46,7 @@ class PostForm extends Component
 
         if ($this->formFunction === "create") {
             $this->btnSubmitContent = "Crear";
-            $this->btnCancelRedirect = "/posts";
+            $this->btnCancelRedirect = "dashboard";
         } elseif ($this->formFunction === "edit") {
             $this->subjectOriginal = $post->subject;
             $this->btnSubmitContent = "Actualizar";
@@ -93,5 +93,13 @@ class PostForm extends Component
         $this->post->save();
 
         redirect($this->btnCancelRedirect);
+    }
+
+    public function delete()
+    {
+        // dd($this->post);
+        $this->post->delete();
+
+        return redirect()->route('dashboard');
     }
 }

@@ -12,31 +12,31 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
                 <h1 class="text-center text-2xl my-10">Contenido de <span style="color: {{$subject->color}}" class="font-extrabold text-3xl">{{$subject->name}}</span></h1>
                 @forelse ($chapters as $chapter)
-                    <x-div-chapter data-chapterId="{{$chapter->id}}">{{$chapter->name}}</x-div-chapter>
+                    <x-chapter-div data-chapterId="{{$chapter->id}}">{{$chapter->name}}</x-chapter-div>
                     @foreach ($chapter->posts as $post)
-                    <x-div-post :post="$post" :chapterId="$chapter->id">
+                    <x-post-div :post="$post" :chapterId="$chapter->id">
                         {{$post->title}}
                         <x-slot name="description">
                             {{$post->description}}
                         </x-slot>
                         <x-slot name="adition"></x-slot>
-                    </x-div-post>
+                    </x-post-div>
                     @endforeach
                     
                 @empty
                     <h3>No hay Capítulos</h3>
                 @endforelse
                     @if (count($postsNoChapter))
-                        <x-div-chapter data-chapterId="0" class="font-normal text-slate-500">Posts sin clasificar</x-div-chapter>
+                        <x-chapter-div data-chapterId="0" class="font-normal text-slate-500">Posts sin clasificar</x-chapter-div>
                         <div class="">
                             @foreach ($postsNoChapter as $post)
-                                <x-div-post :post="$post" chapterId="0">
+                                <x-post-div :post="$post" chapterId="0">
                                     {{$post->title}}
                                 <x-slot name="description">
                                     {{$post->description}}
                                 </x-slot>
                                 <x-slot name="adition"></x-slot>
-                            </x-div-post>
+                            </x-post-div>
                             @endforeach
                         </div>
                     @endif
