@@ -1,4 +1,7 @@
 <x-app-layout>
+    @push('styles')
+        <link href="{{asset('prism/prism.css')}}" rel="stylesheet" />
+    @endpush
     <x-slot name="header">
         <div class="flex justify-between">
             <div>
@@ -25,4 +28,8 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script src="{{asset('prism/prism.js')}}"></script>
+    @endpush
 </x-app-layout>
