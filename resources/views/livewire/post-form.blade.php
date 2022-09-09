@@ -93,7 +93,7 @@
                             
                     </fieldset>
                     <fieldset class="p-5 mt-8 flex justify-between">
-                        <x-jet-danger-button wire:click="delete">Eliminar</x-jet-danger-button>
+                        <x-jet-danger-button wire:click="delete($post)">Eliminar</x-jet-danger-button>
                         <div>
                             <a href="{{$btnCancelRedirect}}"><x-jet-secondary-button>Cancelar</x-jet-secondary-button></a>
                             <x-jet-button>{{$btnSubmitContent}}</x-jet-button>

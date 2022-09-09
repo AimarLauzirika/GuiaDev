@@ -13,4 +13,9 @@ class Subject extends Model
     {
         return $this->hasMany(Chapter::class);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

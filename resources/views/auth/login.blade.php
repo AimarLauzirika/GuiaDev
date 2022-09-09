@@ -16,8 +16,8 @@
             @csrf
 
             <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-label for="username" value="{{ __('Nombre de usuario') }}" />
+                <x-jet-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus />
             </div>
 
             <div class="mt-4">
@@ -33,9 +33,9 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                @if (Route::has('register'))
+                    <a class="text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                        {{ __('¿No tienes una cuenta? Créalo aquí') }}
                     </a>
                 @endif
 

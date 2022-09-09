@@ -55,13 +55,13 @@ class ChapterSeeder extends Seeder
         DB::table('chapters')->insert([
             'id' => 7,
             'name' => 'Configuración',
-            'subject_id' => 2,
+            'subject_id' => 3,
             'position' => 2,
         ]);
         DB::table('chapters')->insert([
             'id' => 8,
             'name' => 'Ramas',
-            'subject_id' => 2,
+            'subject_id' => 3,
             'position' => 1,
         ]);
     }

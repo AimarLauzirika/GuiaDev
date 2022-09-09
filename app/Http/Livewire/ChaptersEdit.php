@@ -28,7 +28,7 @@ class ChaptersEdit extends Component
     public function render()
     {
         // $this->subject = Subject::orderBy('position')->get();
-        $this->chapters = Chapter::orderBy('position')->get();
+        $this->chapters = Chapter::where('subject_id', $this->subject->id)->orderBy('position')->get();
         return view('livewire.chapters-edit');
     }
 

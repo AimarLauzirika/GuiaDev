@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-center text-xl text-gray-800">
             {{ __('Todos los Temas') }}
         </h2>
     </x-slot>
@@ -26,16 +26,19 @@
                 <div id="subjectsContainer">
                     @foreach ($subjects as $subject)
                         <div class="flex justify-between border-b rounded-md hover:bg-neutral-100">
-                            <a href="{{route('subjects.show', $subject)}}" data-autor="{{$subject->user_id}}" style="color: {{$subject->color}}" draggable="false"  class="subject block w-full p-2 cursor-default font-bold">{{$subject->name}}</a>
-                            @auth
-                            @if (Auth::user()->role_id == $subject->user_id)
+                            <a href="{{route('subjects.show', $subject)}}" data-autor="{{$subject->user_id}}" style="color: {{$subject->color}}" draggable="false"  class="subject block w-full p-2 cursor-default font-bold">{{$subject->name}}<span class="text-sm text-gray-400 font-semibold ml-3">{{count($subject->posts)}} Posts</span></a>
+                            {{--  --}}
                             <div class="buttons hidden">
+                                @auth
+                                @if (Auth::user()->role_id == $subject->user_id)
                                 {{-- <a href="{{route('subjects.edit', $subject)}}" class="b-edit hover:text-amber-500 hover:bg-neutral-200 text-base py-2 px-3 rounded-3xl">Editar</a> --}}
                                 @livewire('subjects-edit', ['subject' => $subject], key($subject->id))
                                 <p wire:click="delete({{$subject}})" class="hover:text-red-600 hover:bg-neutral-200 text-base py-1 px-3 h-11 pt-2 rounded-3xl cursor-pointer">Eliminar</p>
+                                @else
+                                <div><div></div></div>
+                                @endif
+                                @endauth
                             </div>
-                            @endif
-                            @endauth
                         </div>
                     @endforeach
                 </div>
@@ -95,7 +98,7 @@
                 });
             }
 
-            // Permite dar tiempo para que al crear un nuevo tema se le apliquen los efectos de mostrar y ocultar
+            // Permite dar tiempo para que al crear un nuevo tema se le apliquen los efectos de mostrar y ocultar botones de edición y eliminar
             Livewire.on('renderSubjectsIndex', function() {
                 setTimeout(() => {
                     activeEdit = undefined

@@ -21,8 +21,18 @@ class SubjectSeeder extends Seeder
             'user_id' => 1
         ]);
         DB::table('subjects')->insert([
+            'name' => 'PHP',
+            'color' => '#7A86B8',
+            'user_id' => 1
+        ]);
+        DB::table('subjects')->insert([
             'name' => 'Git & GitHub',
             'color' => '#24293E',
+            'user_id' => 1
+        ]);
+        DB::table('subjects')->insert([
+            'name' => 'Vue 3',
+            'color' => '#3FB983',
             'user_id' => 1
         ]);
     }

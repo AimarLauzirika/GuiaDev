@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h2 class="text-center text-xl text-gray-800 leading-tight">
+        <h2 class="text-center text-xl text-gray-800">
             {{ __('Todos los Posts') }}
         </h2>
     </x-slot>

@@ -7,9 +7,12 @@ use App\Models\Post;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class PostForm extends Component
 {
+    use AuthorizesRequests;
+    
     public $subjects;
     public $chapters;
     public $post;
@@ -48,6 +51,9 @@ class PostForm extends Component
             $this->btnSubmitContent = "Crear";
             $this->btnCancelRedirect = "dashboard";
         } elseif ($this->formFunction === "edit") {
+            
+            $this->authorize('author', $post);
+            
             $this->subjectOriginal = $post->subject;
             $this->btnSubmitContent = "Actualizar";
             $this->btnCancelRedirect = "/posts/".$post->id;
@@ -95,9 +101,10 @@ class PostForm extends Component
         redirect($this->btnCancelRedirect);
     }
 
-    public function delete()
+    public function delete(Post $post)
     {
-        // dd($this->post);
+        $this->authorize('author', $post);
+
         $this->post->delete();
 
         return redirect()->route('dashboard');

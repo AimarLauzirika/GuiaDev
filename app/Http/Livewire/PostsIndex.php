@@ -25,14 +25,18 @@ class PostsIndex extends Component
     public function render()
     {
         $this->posts = Post::where([
-                ['subject_id', 'like', $this->filterSubjectId], 
-                ['user_id', 'like', $this->filterUserId],
-                ['title', 'like', '%'. $this->filterSearch .'%'],])
-            ->orWhere([
-                ['subject_id', 'like', $this->filterSubjectId],
-                ['user_id', 'like', $this->filterUserId],
-                ['description', 'like', '%'. $this->filterSearch .'%']])
-            ->get();
+                    ['subject_id', 'like', $this->filterSubjectId], 
+                    ['user_id', 'like', $this->filterUserId],
+                    ['title', 'like', '%'. $this->filterSearch .'%'],
+                    ['public', '1'],
+                ])
+                ->orWhere([
+                    ['subject_id', 'like', $this->filterSubjectId],
+                    ['user_id', 'like', $this->filterUserId],
+                    ['description', 'like', '%'. $this->filterSearch .'%'],
+                    ['public', '1'],
+                    ])
+                ->get();
         return view('livewire.posts-index');
     }
 }
