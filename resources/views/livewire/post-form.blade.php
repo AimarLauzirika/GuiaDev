@@ -70,8 +70,8 @@
                         </div>
                     </fieldset>
                     <fieldset class="md:flex p-5 justify-around">
-                        <div class="border p-4 rounded-lg mb-5">
-                            <p>¿Está terminado el Post?</p>
+                        <div class="border p-4 rounded-lg">
+                            <p class="mb-4">¿Está terminado el Post?</p>
                             <label class="flex">
                                 <input wire:model="finished" type="radio" value="1" class="my-auto mr-2"> <p>Sí</p>
                             </label>
@@ -81,7 +81,7 @@
                             <x-jet-input-error for="finished">@error('finished'){{$message}}@enderror</x-jet-input-error>
                         </div>
                         <div class="border p-4 rounded-lg">
-                            <p>¿Quieres que esté público o oculto?</p>
+                            <p class="mb-4">¿Quieres que esté público u oculto?</p>
                             <label class="flex">
                                 <input wire:model="public" type="radio" value="1" class="my-auto mr-2"> <p>Público</p>
                             </label>

@@ -42,6 +42,7 @@ class PostSeeder extends Seeder
             'subject_id' => 3,
             'chapter_id' => 7,
             'finished' => 0,
+            'public' => 0,
         ]);
         
         DB::table('posts')->insert([

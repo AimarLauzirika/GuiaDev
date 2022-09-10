@@ -8,8 +8,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5 text-xl">
-                <div class="flex justify-between">
-                    <div class="flex text-sm mb-3 text-neutral-500">
+                <div class="flex justify-end">
+                    {{-- <div class="flex text-sm mb-3 text-neutral-500">
                         @auth
                         <p class="mr-3 my-auto">Filtrar</p>
                         <select wire:model="filter" class="py-0 text-sm">
@@ -19,7 +19,7 @@
                         @else
                         <p>Todos los Temas</p>
                         @endauth
-                    </div>
+                    </div> --}}
                     @auth @livewire('subjects-create') @endauth
                 </div>
                 <div class="border-b"></div>

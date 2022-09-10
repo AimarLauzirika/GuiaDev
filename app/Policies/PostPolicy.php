@@ -13,8 +13,15 @@ class PostPolicy
 
     public function author(User $user, Post $post)
     {
+        if ($user->id === $post->user_id) {
+            return true;
+        }
+        if ($post->public == 0) {
+            return Response::denyAsNotFound();
+        }
         if ($user->id != $post->user_id) {
             return Response::deny();
         }
+        return true;
     }
 }

@@ -28,42 +28,60 @@
 
                 <h3 class="text-xl text-slate-800 font-bold">Tecnologías</h3>
 
-                <p>Es un proyecto <strong>Laravel</strong> y he utilizado <strong>Tailwind</strong>, <strong>Jetstream</strong> y <strong>Livewire</strong>. Además he utilizado otras herramientas como CkEditor 5, Prism y Sortable como iré detallando más adelante.</p>
+                <p>Es un proyecto <span class="font-bold text-violet-900">Laravel</span> y he utilizado <span class="font-bold text-violet-900">Tailwind</span>, <span class="font-bold text-violet-900">Jetstream</span> y <span class="font-bold text-violet-900">Livewire</span>. Además he utilizado otras herramientas como CkEditor 5, Prism y Sortable como iré detallando más adelante.</p>
 
                 <h2 class="text-2xl text-slate-800 font-extrabold">Cómo funciona Guia Dev</h2>
 
+                <h3 class="text-xl text-slate-800 font-bold">Rutas</h3>
+
+                <p>La primera opción a la hora de crear rutas en un proyecto basicamente de tipo CRUD, es normalmente utilizar <span class="font-bold text-violet-900">rutas resource</span>. Pero en este caso, varias de las acciones del CRUD se ejecutan mediante los controladores de los componentes Livewire. Por lo que he decidido no utilizar rutas resource. Por otro lado, he añadido <span class="font-bold text-violet-900">middlewares</span> de usuarios autenticados en algunas de las rutas y por supuesto nombres a cada ruta.</p>
+
                 <h3 class="text-xl text-slate-800 font-bold">Login</h3>
 
-                <p>Los temas y los capítulos solo pueden ser creados, editados y/o eliminados por el usuario con rol de administrador. Y los Posts pueden crearlos cualquier usuario registrado, por lo que hay un sistema de login.</p>
-                <p>El login de este proyecto es el que viene con Jetstream con alguna modificación en el usuario, no hace falta el email, basta con un nombre de usuario (que tendrá que ser único). Este sistema de login incluye:</p>
-                   
+                <p>El login de este proyecto es el que viene con Jetstream, pero con modificaciones:</p>
+                <ul class="list-disc pl-8">
+                    <li>He cambiado el campo "name" por "username".</li>
+                    <li>He quitado el campo email. Para registrarse sólo se requiere un nombre de usuario (que tendrá que ser único) y contraseña (también modificado).</li>
+                    <li>He cambiado el número mínimo de caracteres de la contraseña. Por defecto viene con 8 y ahora son 4.</li>
+                </ul>
+                <p>Pensaba que estos cambios sería algo muy sencillo de aplicar, pero requiere modificar controladores, métodos y vistas que ni sabía que existían.</p>
+
+                <p>Este sistema de login incluye:</p>
                 <ul class="list-disc pl-8">
                     <li>Registrarse e iniciar sesión.</li>
-                    <li>Editar tus datos de usuario: nombre, email y contraseña.</li>
+                    <li>Editar tus datos de usuario: nombre de usuario y contraseña en este caso.</li>
                     <li>Activar el doble factor de autenticación.</li>
                     <li>Administrar y cerrar sesión de tus sesiones activas en otros navegadores y dispositivos.</li>
                     <li>Eliminar cuenta.</li>
                 </ul>
 
-                <p>Todo esto está operativo y funcionando.</p>
+                <p>Todo esto está operativo y funcionando. También he traducido todo el login, la página de perfil, los modales y demás elementos.</p>
 
                 <h3 class="text-xl text-slate-800 font-bold">Navegación</h4>
 
-                <p>En la navegación disponemos cuatro enlaces: Home (el logo), Mis Apuntes, Posts y Temas</p>
+                <p>En la navegación disponemos cinco elementos: Home (el logo), Mis Posts, Posts, Temas y Usuario/Login</p>
 
                 <h4 class="font-bold">Home</h4>
                 <p>Esta es la página donde nos encontramos ahora, y como ves es simplemente la descripción del proyecto.</p> 
                 
-                <h4 class="font-bold">Mis Apuntes</h4>
-                <p>La página "Mis Apuntes" es un dashboard donde el usuario puede hacer un todo el CRUD de los Post. También tiene un buscador y tres filtros para encontrar el Post que está buscando. El buscador hace una búsqueda en los apartados título y descripción del Post.</p>
-                <p>Esta página <span class="font-bold">es por completo un componente Livewire</span>. Para ello la ruta lo direcciona directamente al controlador del componente Livewire y no hace falta crear un controlador con un solo método y que redireccione al controlador de Livewire.</p>
+                <h4 class="font-bold">Mis Posts</h4>
+                <p>La página "Mis Posts" es un dashboard donde el usuario puede hacer un todo el CRUD de los Post. También tiene un buscador y tres filtros para encontrar el Post que está buscando. El buscador hace una búsqueda en los campos título y descripción del Post.</p>
+                <p>Esta página <span class="font-bold text-violet-900">es por completo un componente Livewire</span>. Para ello la ruta lo direcciona directamente al controlador del componente Livewire y no hace falta crear un controlador con un solo método y con la única función de redireccionar al controlador de Livewire.</p>
                 <p>La razón por la que he utilizado un componente Livewire en esta página es para que el buscador y los filtros actuen de manera reactiva, es decir que podemos filtrar y actualizar la tabla de Posts sin tener que recargar la página, lo que mejora notoriamente la experiencia del usuario.</p>
+                <p>Los bloques de código tienen el resaltado de sintáxis de <span class="font-bold text-violet-900">Prism</span>, que facilita mucho la lectura de código y, a mi parecer, mejora el Post estéticamente.</p>
 
 
-                <h4 class="font-bold text-slate-600">Formulario del Post</h4>
-                <p>Desde esta página podemos crear y editar los Post. El formulario para crear y editar el Post es el mismo componente Livewire. Lo hice con componente para reutilizar el código ya que es básicamente el mismo formulario. Y lo hice con Livewire porque, por una parte el "select" para elegir el capítulo depende del "select" del tema, y quería que los cambios fuesen reactivos. Y por otra parte el controlador del componente de Livewire ofrece mucha versatilidad, y es sencillo aplicar distintos métodos como crear, editar o eliminar según se aplique.</p>
-                <p>Mientras escribo esta descripción de mi proyecto, he ido mejorando el código porque me he ido dando cuenta de varias cosas. Me he encotrado algunos errores, alguno debido a cosas que he dejado "para después", y como no lo apunté en el momento en algún lado, "después" estaba con otras cosas. Otros errores han sido partes del código que en el momento funcionaban y, al avanzar, se vieron afectados y empezaron a dar errores. Pero algunas cosas de las que me he dado cuenta, son cosas que se podían mejorar. Por ejemplo, me acabo de dar cuenta de que mi página no está suficientemente protegida. Y es que aunque tenga un <span class="font-bold">middleware</span> para los usuario no autenticados, un usuario que no es autor del Post, aún no teniendo un botón o enlace para editarlo, tiene muy facil escribir la url de la página para editar con el id de otro Post. Y para solucionarlo he creado un <span class="font-bold">Policy</span> que identifique al usuario autenticado y compararlo con el autor del Post, y lo he aplicado en el controlador livewire (teniendo que incorporar <span class="italic bg-gray-200">Illuminate\Foundation\Auth\Access\AuthorizesRequests</span>) tanto en el método para editar, como en el de eliminar el Post.</p>
-                <p>Y puede pasar algo parecido al visualizar un Post. Y es que un usuario podría ver un Post que no es público escribiendo en la url su id. Por lo que le he utilizado el mismo Policy en el méthodo show, con la condición de que el Post esté oculto (los Post públicos los puede ver cualquiera). Pero indagando las Policies por internet me he topado con un consejo para este caso de no permitir mostrar Posts ocultos. Y la cuestión es que recomendaban no utilizar una respuesta <span class="font-bold">403 (Forbidden)</span>, que es el que se utiliza en estos casos y el que he utilizado con la edición del Post, en su lugar aconsejaban usar el código <span class="font-bold">404 (Not Found)</span> para que un posible intruso no pueda detectar los id de los Post que estén ocultos. Y así lo he hecho en mi proyecto tambien. Lo comentan en este <a href="https://www.youtube.com/watch?v=wk_PKHlHDDo" class="text-blue-700">vídeo de Youtube</a>.</p>
+                <h5 class="font-bold text-slate-600">Formulario del Post</h5>
+                <p>Desde esta la página "Mis Posts" podemos crear y editar nuestros Posts. Para crear y editar el Post se utiliza el mismo componente Livewire. Lo hice con componente para reutilizar el código ya que es básicamente el mismo formulario. Y lo hice con Livewire porque, por una parte el "select" para elegir el capítulo depende del "select" del tema, y quería que los cambios fuesen reactivos. Para escribir el contenido del Post he utilizado <span class="font-bold text-violet-900">CKEditor</span> para poder agregar formatos al texto, bloques de código, tablas, etc.</p>
+                <p>Un usuario que no es autor del Post, aún no teniendo un botón o enlace para editarlo, tiene muy facil escribir la url de la página para editar con el id de otro Post. Y para solucionarlo he creado un <span class="font-bold text-violet-900">Policy</span>. Este Policy responde con el código <span class="font-bold text-violet-900">403 (Forbidden)</span> si el usuario no es el autor del Post, pero en el caso de que el Post sea oculto, la respuesta es el código <span class="font-bold text-violet-900">404 (Not Found)</span>. Esta Policy también lo he utilizado en la ruta "post.show" para que no se puedan ver Posts ocultos, mostrando el código de error 404.</p>
+                <h5 class="font-bold text-slate-600">Validaciones</h5>
+                <p></p>
+                
+                <h4 class="font-bold">Posts</h4>
+                
+                
+                <h4 class="font-bold">Temas</h4>
+
 
             </div>
         </div>
