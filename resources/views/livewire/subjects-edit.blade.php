@@ -8,14 +8,20 @@
         </x-slot>
         <x-slot name="content">
             <div class="mb-12 space-y-14 text-base">
-                <label class="flex">
-                    <p class="mt-auto">Nombre del Tema:</p>
-                    <x-jet-input wire:model="name" style="color: {{$color}}" class="flex-1 ml-3 border-b-2 rounded-none focus:outline-none text-2xl font-bold" value="{{$name}}" autofocus/>
-                </label>
-                <label class="flex">
-                    <p class="mt-auto">Cambiar el Color:</p>
-                    <x-jet-input wire:model="color" type="color" value="{{$color}}" class=" mx-3 h-8 w-80" />
-                </label>
+                <div>
+                    <label class="flex">
+                        <p class="mt-auto">Nombre del Tema:</p>
+                        <x-jet-input wire:model="name" style="color: {{$color}}" class="flex-1 ml-3 border-b-2 rounded-none focus:outline-none text-2xl font-bold" value="{{$name}}" autofocus/>
+                    </label>
+                    <x-jet-input-error for="name" class="mt-1"></x-jet-input-error>
+                </div>
+                <div>
+                    <label class="flex">
+                        <p class="mt-auto">Cambiar el Color:</p>
+                        <x-jet-input wire:model="color" type="color" value="{{$color}}" class=" mx-3 h-8 w-80" />
+                    </label>
+                    <x-jet-input-error for="color" class="mt-1"></x-jet-input-error>
+                </div>
             </div>
         </x-slot>
         <x-slot name="footer">

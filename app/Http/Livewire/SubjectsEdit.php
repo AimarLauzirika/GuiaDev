@@ -11,6 +11,13 @@ class SubjectsEdit extends Component
     
     public $open = false;
 
+    protected function rules() {
+        return [
+            'name' => 'required|unique:subjects,name,'.$this->subject->id.'|max:30',
+            'color' => 'required|min:4|max:7',
+        ];
+    }
+
     public function mount($subject)
     {
         $this->name = $subject->name;
@@ -31,6 +38,7 @@ class SubjectsEdit extends Component
 
     public function save()
     {
+        $this->validate();
         // dd($this->subject);
         $subject = $this->subject;
         $subject->name = $this->name;

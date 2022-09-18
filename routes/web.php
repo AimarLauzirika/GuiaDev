@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\SubjectController;
 use App\Http\Livewire\PostForm;
 use App\Http\Livewire\PostsIndex;
 use App\Http\Livewire\SubjectShow;

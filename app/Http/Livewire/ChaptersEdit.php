@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Chapter;
 use App\Models\Subject;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 use function Termwind\render;
@@ -13,10 +14,12 @@ class ChaptersEdit extends Component
 
     public $open = false;
 
+    public $function;
+
     public $subject;
     public $chapters;
 
-    public $newChapter;
+    public $name;
     public $editingChapter;
     public $editNewName;
     public $pAddHidden = '';
@@ -24,6 +27,13 @@ class ChaptersEdit extends Component
     public $editHidden = 'hidden';
 
     protected $listeners = ['dragend'];
+
+    public function rules() {
+        return [
+            // 'name' => ['required', Rule::unique('chapters')->ignore($this->id),]
+            'name' => ['required', 'unique:chapters',]
+        ];
+    }
     
     public function render()
     {
@@ -40,34 +50,44 @@ class ChaptersEdit extends Component
 
     public function store()
     {
+        $this->validate();
+
         $chapter = new Chapter;
-        $chapter->name = $this->newChapter;
+        $chapter->name = $this->name;
         $chapter->subject_id = $this->subject->id;
-        // dd(Chapter::where('subject_id', $chapter->subject_id)->orderBy('position', 'desc')->first()->position);
-        $lastPosition = Chapter::where('subject_id', $chapter->subject_id)->orderBy('position', 'desc')->first()->position;
-        $chapter->position = $lastPosition + 1;
-        // dd($chapter);
+        $lastChapter = Chapter::where('subject_id', $chapter->subject_id)->orderBy('position', 'desc')->first();
+        if (isset($lastChapter)) {
+            $chapter->position = $lastChapter->position + 1;
+        } else {
+            $chapter->position = 1;
+        }
         $chapter->save();
+        $this->reset('name');
 
         $this->pAddHidden = '';
         $this->createHidden = 'hidden';
 
         $this->emit('render');
+        $this->emit('sortable');
     }
 
     public function editingChapter(Chapter $chapter)
     {
         // dd($chapter);
         $this->editingChapter = $chapter;
-        $this->editNewName = $chapter->name;
+        $this->name = $chapter->name;
+        // $this->editNewName = $chapter->name;
         $this->pAddHidden = 'hidden';
         $this->editHidden = '';
+
+        // dd($this->editingChapter->name);
     }
     
     public function update()
     {
+        $this->validate();
         // dd($this->editingChapter, $this->editNewName);
-        $this->editingChapter->name = $this->editNewName;
+        $this->editingChapter->name = $this->name;
         // dd($this->editingChapter->name);
         $this->editingChapter->save();
 
@@ -103,8 +123,19 @@ class ChaptersEdit extends Component
 
     public function hiddenReset()
     {
+        $this->reset('name');
         $this->reset('editHidden');
         $this->reset('createHidden');
         $this->reset('pAddHidden');
+        $this->resetErrorBag();
+    }
+    
+    public function close()
+    {
+        $this->reset('editHidden');
+        $this->reset('createHidden');
+        $this->reset('pAddHidden');
+        $this->resetErrorBag();
+        $this->open = "false";
     }
 }

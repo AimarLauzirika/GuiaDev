@@ -27,22 +27,26 @@
                     <p class="text-slate-500">Drag & Drop para reordenar</p>
                 </div>
                 <div class="w-0.5 bg-neutral-200 mx-5"></div>
-                <div class="">
+                <div>
                     <p wire:click="showCreateDiv" id="pCreateChapter" class="hover:underline cursor-pointer {{$pAddHidden}}">Añadir Capítulo</p>
-                    <div id="divCreate" class="flex {{$createHidden}}">
-                        <x-jet-input wire:model.defer="newChapter" id="inputNewChapter" placeholder="Nuevo Capítulo"></x-jet-input>
-                        <x-jet-button wire:click="store">Añadir</x-jet-button>
-                        <x-jet-danger-button wire:click="hiddenReset">X</x-jet-danger-button>
+                    <div id="divCreate" class="{{$createHidden}}">
+                        <div class="flex">
+                            <x-jet-input wire:model.defer="name" id="inputNewChapter" placeholder="Nuevo Capítulo"></x-jet-input>
+                            <x-jet-button wire:click="store">Añadir</x-jet-button>
+                            <x-jet-danger-button wire:click="hiddenReset">X</x-jet-danger-button>
+                        </div>
+                        <x-jet-input-error for="name"></x-jet-input-error>
                     </div>
                     <div id="divEdit" class="{{$editHidden}}">
                         <h2 class="text-center text-xl my-5">Editar {{isset($editingChapter->name) ? $editingChapter->name : '' }}</h2>
                         <div class="flex">
-                            <x-jet-input wire:model.defer="editNewName"></x-jet-input>
+                            <x-jet-input wire:model.defer="name" value="{{$editNewName}}"></x-jet-input>
                             <div class="flex">
                                 <x-jet-button wire:click="update">Actualizar</x-jet-button>
                                 <x-jet-danger-button wire:click="hiddenReset">X</x-jet-danger-button>
                             </div>
                         </div>
+                        <x-jet-input-error for="name"></x-jet-input-error>
                     </div>
                 </div>
             </div>
@@ -58,11 +62,19 @@
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
         <script>
             // import Sortable from 'sortablejs';
-            new Sortable(sortable, {
-                handle: '.handle',
-                animation: 150,
-                ghostClass: 'bg-sky-100'
-            });
+            function dragAndDrop() {
+                new Sortable(sortable, {
+                    handle: '.handle',
+                    animation: 150,
+                    ghostClass: 'bg-sky-100'
+                });
+            }
+            dragAndDrop()
+            Livewire.on('sortable', () => {
+                setTimeout(() => {
+                    dragAndDrop()
+                }, 1000);
+            })
             
             const sortableItems = document.querySelectorAll('.sortableItem')
             sortableItems.forEach( item => {
@@ -82,7 +94,7 @@
         </script>
 
         <script>
-            //* Alerts
+            //* Sweetalert
             Livewire.on('alertErrorChapterHasPosts', ()=>{
                 Swal.fire({
                     icon: 'error',

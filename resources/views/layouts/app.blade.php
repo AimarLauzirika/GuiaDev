@@ -16,6 +16,7 @@
 
         <!-- Styles -->
         @stack('styles')
+        <link href="{{asset('prism/prism.css')}}" rel="stylesheet" />
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -43,5 +44,6 @@
 
         @livewireScripts
         @stack('scripts')
+        <script src="{{asset('prism/prism.js')}}"></script>
     </body>
 </html>

@@ -13,7 +13,7 @@ class SubjectsCreate extends Component
     public $name, $color = "#000";
 
     protected $rules = [
-        'name' => 'required|unique:subjects|max:20',
+        'name' => 'required|unique:subjects|max:30',
         'color' => 'required|min:4|max:7',
     ];
     

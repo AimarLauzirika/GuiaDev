@@ -1,22 +1,17 @@
 <div>
-    @push('styles')
-        {{-- {{dd(asset('ckeditor/build/ckeditor.js'))}} --}}
-        
-
-    @endpush
     <x-slot>
-        <h1 class="text-center text-gray-800 leading-tight">
-            @if ($formFunction === 'create')
-                Crear Post
-            @elseif($formFunction === "edit")
-                Editar el Post <span class="font-bold text-xl">{{ $post->title }}</span>
-            @endif
-        </h1>
     </x-slot>
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5 bg-">
+                <h1 class="text-center text-gray-800 text-2xl font-bold my-10">
+                    @if ($formFunction === 'create')
+                        Crear Post
+                    @elseif($formFunction === "edit")
+                        Editar el Post <span class="font-bold text-xl">{{ $post->title }}</span>
+                    @endif
+                </h1>
                 <form wire:submit.prevent="submit">
                     <fieldset class="justify-around p-5 md:flex">
                         <label>
@@ -93,7 +88,11 @@
                             
                     </fieldset>
                     <fieldset class="p-5 mt-8 flex justify-between">
-                        <x-jet-danger-button wire:click="delete($post)">Eliminar</x-jet-danger-button>
+                        @if ($formFunction === 'edit')
+                            <x-jet-danger-button wire:click="$emit('alertDelete',{{$post}})">Eliminar</x-jet-danger-button>
+                        @else
+                            <div></div>
+                        @endif
                         <div>
                             <a href="{{$btnCancelRedirect}}"><x-jet-secondary-button>Cancelar</x-jet-secondary-button></a>
                             <x-jet-button>{{$btnSubmitContent}}</x-jet-button>
@@ -112,6 +111,8 @@
     @push('scripts')
         <script src="{{asset('ckeditor/build/ckeditor.js')}}"></script>
         <script>
+
+            //* CKEditor
             const contentValue = document.querySelector('#contentValue').value;
             ClassicEditor
                 .create( document.querySelector( '#editor' ), {
@@ -159,6 +160,36 @@
                 .catch( error => {
                     console.error( error );
                 } );
+
+
+
+            //* SweetAlert
+
+            Livewire.on('alertDelete', $post => {
+
+                Swal.fire({
+                    title: '¿Eliminar?',
+                    text: "Si lo eliminas no podrás deshacer los cambios",
+                    icon: 'warning',
+                    iconColor: '#e7470b',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar',
+                    cancelButtonText: 'Cancelar',
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        Livewire.emitTo('post-form', 'delete', $post)
+                        // Swal.fire(
+                        // 'Deleted!',
+                        // 'Your file has been deleted.',
+                        // 'success'
+                        // )
+                    }
+                })
+            })
+
         </script>
     
     @endpush

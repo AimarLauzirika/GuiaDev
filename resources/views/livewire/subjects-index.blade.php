@@ -8,21 +8,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5 text-xl">
-                <div class="flex justify-end">
-                    {{-- <div class="flex text-sm mb-3 text-neutral-500">
-                        @auth
-                        <p class="mr-3 my-auto">Filtrar</p>
-                        <select wire:model="filter" class="py-0 text-sm">
-                            <option value="%">Todos los Temas</option>
-                            <option value="{{Auth::user()->id}}">Mis Temas</option>
-                        </select>
-                        @else
-                        <p>Todos los Temas</p>
-                        @endauth
-                    </div> --}}
-                    @auth @livewire('subjects-create') @endauth
-                </div>
-                <div class="border-b"></div>
+                @if (Auth::user()->role_id == 1)
+                    <div class="flex justify-end border-b">
+                        @livewire('subjects-create')
+                    </div>
+                @endif
+                
                 <div id="subjectsContainer">
                     @foreach ($subjects as $subject)
                         <div class="flex justify-between border-b rounded-md hover:bg-neutral-100">
@@ -31,9 +22,8 @@
                             <div class="buttons hidden">
                                 @auth
                                 @if (Auth::user()->role_id == $subject->user_id)
-                                {{-- <a href="{{route('subjects.edit', $subject)}}" class="b-edit hover:text-amber-500 hover:bg-neutral-200 text-base py-2 px-3 rounded-3xl">Editar</a> --}}
                                 @livewire('subjects-edit', ['subject' => $subject], key($subject->id))
-                                <p wire:click="delete({{$subject}})" class="hover:text-red-600 hover:bg-neutral-200 text-base py-1 px-3 h-11 pt-2 rounded-3xl cursor-pointer">Eliminar</p>
+                                <p wire:click="$emit('alertDelete', {{$subject}})" class="hover:text-red-600 hover:bg-neutral-200 text-base py-1 px-3 h-11 pt-2 rounded-3xl cursor-pointer">Eliminar</p>
                                 @else
                                 <div><div></div></div>
                                 @endif
@@ -54,7 +44,6 @@
             let activeEdit;
             renderButtons()
             
-
             //*** Para que los botones de editar y eliminar Tema se muestren y oculten ***\\
             function renderButtons() {
                 
@@ -135,6 +124,32 @@
                 }
             })
             //********************************************************************\\
+
+            //* Sweetalert2
+            Livewire.on('alertDelete', post => {
+                Swal.fire({
+                    title: '¿Eliminar?',
+                    text: "Si lo eliminas no podrás deshacer los cambios",
+                    icon: 'warning',
+                    iconColor: '#e7470b',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar',
+                    cancelButtonText: 'Cancelar',
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        Livewire.emitTo('subjects-index', 'delete', post)
+                        // Swal.fire(
+                        // 'Deleted!',
+                        // 'Your file has been deleted.',
+                        // 'success'
+                        // )
+                    }
+                })
+            })
+            
         </script>
     @endpush
     @endauth

@@ -6,11 +6,13 @@ use App\Models\Post;
 use App\Models\Subject;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PostsIndex extends Component
 {
-
-    public $subjects, $posts, $users;
+    use WithPagination;
+    
+    public $subjects, $users;
 
     public $filterSearch;
     public $filterSubjectId = '%';
@@ -24,7 +26,7 @@ class PostsIndex extends Component
     
     public function render()
     {
-        $this->posts = Post::where([
+        $posts = Post::where([
                     ['subject_id', 'like', $this->filterSubjectId], 
                     ['user_id', 'like', $this->filterUserId],
                     ['title', 'like', '%'. $this->filterSearch .'%'],
@@ -36,7 +38,7 @@ class PostsIndex extends Component
                     ['description', 'like', '%'. $this->filterSearch .'%'],
                     ['public', '1'],
                     ])
-                ->get();
-        return view('livewire.posts-index');
+                ->paginate(4);
+        return view('livewire.posts-index', compact('posts'));
     }
 }

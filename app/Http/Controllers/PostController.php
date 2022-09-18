@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,10 @@ class PostController extends Controller
 {
     public function show(Post $post)
     {
-        $this->authorize('author', $post);
+        // $this->authorize('author', $post);
+        if ($post->public == '0') {
+            abort(404);
+        }
         return view('posts.show', compact('post'));
     }
 

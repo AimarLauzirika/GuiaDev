@@ -30,6 +30,7 @@ class PostForm extends Component
     public $finished = 0;
     public $public = 1;
 
+    protected $listeners = ['delete'];
 
     protected function rules() {
         return [
@@ -103,6 +104,7 @@ class PostForm extends Component
 
     public function delete(Post $post)
     {
+        // dd($post);
         $this->authorize('author', $post);
 
         $this->post->delete();

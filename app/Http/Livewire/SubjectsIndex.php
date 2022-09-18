@@ -12,6 +12,7 @@ class SubjectsIndex extends Component
 
     protected $listeners = [
         'renderSubjectsIndex' => 'render',
+        'delete',
     ];
 
     public function render()
@@ -23,8 +24,6 @@ class SubjectsIndex extends Component
 
     public function delete($subject)
     {
-        // dd($subject['id']);
-
         Subject::destroy($subject['id']);
     }
 }

@@ -1,32 +1,35 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            {{-- <x-jet-authentication-card-logo /> --}}
+            <h1 class="text-3xl font-bold text-slate-800">Crear Cuenta</h1>
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
+        {{-- <x-jet-validation-errors class="mb-4" /> --}}
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
             <div>
                 <x-jet-label for="username" value="{{ __('Nombre de Usuario') }}" />
-                <x-jet-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
+                <x-jet-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" autofocus autocomplete="off" />
+                <x-jet-input-error for="username" class="mt-1"></x-jet-input-error>
             </div>
-
+            
             {{-- <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div> --}}
-
+            
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" autocomplete="new-password" />
+                <x-jet-input-error for="password" class="mt-1"></x-jet-input-error>
             </div>
-
+            
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" autocomplete="new-password" />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -52,7 +55,7 @@
                 </a>
 
                 <x-jet-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Registrarse') }}
                 </x-jet-button>
             </div>
         </form>

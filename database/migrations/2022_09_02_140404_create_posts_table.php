@@ -23,6 +23,9 @@ return new class extends Migration
             $table->foreignId('chapter_id')->nullable()->constrained();
             $table->boolean('public')->default(1);
             $table->boolean('finished')->default(1);
+
+            $table->unique(['title', 'subject_id']);
+            $table->unique(['description', 'subject_id']);
             $table->timestamps();
         });
     }

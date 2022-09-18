@@ -97,10 +97,13 @@
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                         @endauth
-                                        @guest
-                                            <a href="{{route('login')}}">Iniciar Sesión</a>
-                                        @endguest
                                     </button>
+                                    @guest
+                                    <div class="flex space-x-3 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white">
+                                        <a href="{{route('login')}}" class="hover:text-gray-700">Iniciar Sesión</a>
+                                        <a href="{{route('register')}}" class="hover:text-gray-700">Registrarse</a>
+                                    </div>
+                                    @endguest
                                 </span>
                             @endif
                         </x-slot>

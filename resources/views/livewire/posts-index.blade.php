@@ -46,7 +46,7 @@
                         <tr class="text-sm hover:bg-neutral-50">
                             <td>
                                 <div href="{{route('posts.show', $post)}}" class="hu cursor-pointer">
-                                    <x-post-div :post="$post" class="border-none font-semibold hover:text-emerald-600">
+                                    <x-post-div :post="$post" class="border-none font-semibold">
                                         {{$post->title}}
                                         <x-slot name="description">
                                             {{$post->description}}
@@ -71,6 +71,9 @@
                         @endforelse
                     </tbody>
                 </table>
+                <div class="px-6 pt-5">
+                    {{$posts->links()}}
+                </div>
                 <x-jet-button class="mt-10 ml-5"><a href="{{route('posts.create')}}">+ Crear Post</a></x-jet-button>
             </div>
         </div>

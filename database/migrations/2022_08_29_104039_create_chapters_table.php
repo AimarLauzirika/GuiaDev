@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('position');
             $table->foreignId('subject_id')->constrained()->onDelete('restrict');
             $table->unique(['name', 'subject_id']);
-            $table->unique(['position', 'name']);
+            $table->unique(['position', 'id']);
             $table->timestamps();
         });
     }
