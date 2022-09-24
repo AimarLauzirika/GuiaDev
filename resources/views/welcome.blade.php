@@ -119,10 +119,10 @@
                     <h4 class="font-bold">Añadir Funcionalidades</h4>
                     <ul class="list-disc pl-6">
                         <li>Subir imágenes en ckEditor</li>
+                        <li>Añadir comentarios en los Posts</li>
                     </ul>
                 </div>
-
-
+                @include('README')
 
             </div>
         </div>

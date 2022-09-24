@@ -20,19 +20,19 @@ class UserSeeder extends Seeder
             'username' => 'Admin',
             // 'email' => 'admin@guiadev.com',
             'role_id' => 1,
-            'password' => Hash::make('admin'),
+            'password' => Hash::make('DevAdm'),
         ]);
         DB::table('users')->insert([
             'username' => 'Aimar',
             // 'email' => 'aimar@guiadev.com',
             'role_id' => 2,
-            'password' => Hash::make('aimar'),
+            'password' => Hash::make('DevDev'),
         ]);
         DB::table('users')->insert([
             'username' => 'User1',
             // 'email' => 'user1@guiadev.com',
             'role_id' => 3,
-            'password' => Hash::make('user1'),
+            'password' => Hash::make('DevUsr1'),
         ]);
     }
 }

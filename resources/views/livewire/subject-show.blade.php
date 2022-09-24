@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
                 <h1 class="text-center text-2xl my-10">Contenido de <span style="color: {{$subject->color}}" class="font-extrabold text-3xl">{{$subject->name}}</span></h1>
-                @forelse ($chapters as $chapter)
+                @foreach ($chapters as $chapter)
                     <x-chapter-div data-chapterId="{{$chapter->id}}">{{$chapter->name}}</x-chapter-div>
                     @foreach ($chapter->posts as $post)
                     <x-post-div :post="$post" :chapterId="$chapter->id" class="pl-3">
@@ -23,9 +23,7 @@
                     </x-post-div>
                     @endforeach
                     
-                @empty
-                    <h3>No hay Capítulos</h3>
-                @endforelse
+                @endforeach
                     @if (count($postsNoChapter))
                         <x-chapter-div data-chapterId="0" class="font-normal text-slate-500">Posts sin clasificar</x-chapter-div>
                         <div class="">
