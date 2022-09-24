@@ -126,15 +126,15 @@
                                 model: 'heading1', 
                                 view: {
                                     name:'h1', 
-                                    classes: ['text-xl', 'text-orange-800', 'font-bold', 'bg-red-50', 'px-1']}, 
+                                    classes: ['text-xl', 'text-orange-800', 'font-bold', 'bg-red-50', 'px-1', 'my-4']}, 
                                 title: 'Heading 1', 
                                 class: 'ck-heading_heading1' 
                             },
                             { 
                                 model: 'heading2', 
                                 view: {
-                                    name: 'h2',
-                                    classes: ['text-blue-800', 'font-bold', 'text-lg', 'bg-blue-50', 'px-1']}, 
+                                    name: 'h2', 
+                                    classes: ['text-indigo-800', 'bg-indigo-50', 'font-bold', 'text-lg', 'px-1', 'my-4']},
                                 title: 'Heading 2', 
                                 class: 'ck-heading_heading2'
                             },
@@ -142,11 +142,16 @@
                                 model: 'heading3', 
                                 view: {
                                     name: 'h3', 
-                                    classes: ['font-bold', 'text-md', 'bg-gray-50', 'px-1']},
+                                    classes: ['text-sky-800', 'font-bold', 'text-lg', 'px-1', 'my-4']},
                                 title: 'Heading 3', 
                                 class: 'ck-heading_heading3' 
                             },
-                            { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' }
+                            { model: 'heading4', 
+                            view: {
+                                    name: 'h4', 
+                                    classes: ['font-bold', 'px-1', 'my-4']}, 
+                            title: 'Heading 4', 
+                            class: 'ck-heading_heading4' }
                         ]
                     }
                 })
