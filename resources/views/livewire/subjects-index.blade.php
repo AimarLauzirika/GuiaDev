@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5 text-xl">
                 @auth
-                @if (Auth::user()->role_id == 1)
+                @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
                     <div class="flex justify-end border-b">
                         @livewire('subjects-create')
                     </div>

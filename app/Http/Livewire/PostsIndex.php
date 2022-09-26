@@ -38,6 +38,7 @@ class PostsIndex extends Component
                     ['description', 'like', '%'. $this->filterSearch .'%'],
                     ['public', '1'],
                     ])
+                ->orderBy('updated_at', 'desc')
                 ->paginate(4);
         return view('livewire.posts-index', compact('posts'));
     }
