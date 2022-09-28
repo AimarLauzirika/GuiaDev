@@ -1,0 +1,49 @@
+.markdown-styles > h1 {
+    text-align: center;
+    font-size: xx-large;
+}
+.markdown-styles > h2 {
+    text-align: center;
+    font-size: x-large;
+    color: rgb(72, 103, 161);
+    margin-bottom: 30px;
+}
+.markdown-styles > h3 {
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.markdown-styles > h4 {
+    font-weight: bolder;
+    font-size: large;
+    color: rgb(34, 92, 149);
+}
+.markdown-styles > h5 {
+    font-weight: bold;
+    color: rgb(24, 29, 35);
+}
+.markdown-styles > h6 {
+    font-size: 15px;
+    color: slategrey;
+    font-weight: bold;
+}
+
+.markdown-styles > p {
+    margin-bottom: 20px;
+}
+
+.markdown-styles > ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+.markdown-styles > li {
+    list-style: decimal;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.markdown-styles > .code-toolbar {
+    margin-bottom: 20px;
+}

@@ -8,6 +8,10 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-10 py-10">
+
+                <div class="markdown-styles">
+                    @include('README')
+                </div>
                 
                 <h1 class="text-center text-3xl text-slate-800 font-extrabold mt-10">Bienvenido a Guia Dev</h1>
                 <h2 class="text-center text-2xl text-gray-700 font-bold mt-4">¡Bienvenido a mi primer Proyecto!</h2>
@@ -46,7 +50,6 @@
                         <li>He quitado el campo email. Para registrarse sólo se requiere un nombre de usuario (que tendrá que ser único) y contraseña (también modificado).</li>
                         <li>He cambiado el número mínimo de caracteres de la contraseña. Por defecto viene con 8 y ahora son 4.</li>
                     </ul>
-                    {{-- <p>Pensaba que estos cambios sería algo muy sencillo de aplicar, pero requiere modificar controladores, métodos y vistas que ni sabía que existían.</p> --}}
     
                     <p>Este sistema de login incluye:</p>
                     <ul class="list-disc pl-8">
@@ -61,7 +64,7 @@
     
                     <h3 class="text-xl text-slate-800 font-bold">Navegación</h4>
     
-                    <p>En la navegación disponemos cinco elementos: Home (el logo), Mis Posts, Posts, Temas y Usuario/Login</p>
+                    <p>En la navegación disponemos cinco elementos: Home (el logo), Mis Posts, Posts, Temas y Usuario/Login.</p>
     
                     <h4 class="font-bold">Home</h4>
                     <p>Esta es la página donde nos encontramos ahora, y como ves es simplemente la descripción del proyecto.</p> 
@@ -122,7 +125,6 @@
                         <li>Añadir comentarios en los Posts</li>
                     </ul>
                 </div>
-                @include('README')
 
             </div>
         </div>
