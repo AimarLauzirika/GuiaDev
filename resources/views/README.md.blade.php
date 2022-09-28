@@ -110,7 +110,7 @@ class PostController extends Controller
 
 En la página de Temas podemos ver listados todos los temas de GuiaDev. Los usuarios no tienen acceso a crear, editar ni a eliminar los temas, sólo el administrador puede hacerlo, como se muestra en el siguiente gif.
 
-![gif temas CRUD](public/temasCRUD.gif "Temas CRUD")
+![gif temas CRUD](temasCRUD.gif "Temas CRUD")
 
 Si hacemos click en uno de los temas hacedemos a su contenido. Un tema puede tener (o puede no tener) uno o varios capítulos para separar los Post por las distintas temáticas. Al igual que los temas, los capítulos de estos sólo los podrá crear, editar y eliminar el administrador.
 
