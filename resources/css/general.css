@@ -3,3 +3,7 @@ p > code {
     padding: 2px 5px;
     border-radius: 5px;
 }
+
+.code-toolbar > pre {
+    border-radius: 8px;
+}

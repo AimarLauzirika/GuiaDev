@@ -90,10 +90,11 @@ class ChaptersEdit extends Component
         $this->editingChapter->name = $this->name;
         // dd($this->editingChapter->name);
         $this->editingChapter->save();
-
+        
         $this->pAddHidden = '';
         $this->editHidden = 'hidden';
-
+        
+        $this->reset('name');
         $this->emit('render');
     }
 

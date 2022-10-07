@@ -30,10 +30,10 @@ class readmeToViewCommand extends Command
     public function handle()
     {
         // dd(File::exists('README.md'));
-        if(File::copy('README.md', "resources/views/README.md.blade.php")) {
-            echo "well done";
+        if(File::copy('README.md', "resources/views/README.md")) {
+            echo "README.md was copied.";
         } else {
-            echo 'upsss, something went wrong';
+            echo 'upsss, something went wrong.';
         }
 
         echo "\n";

@@ -110,9 +110,19 @@ class PostController extends Controller
 
 En la página de Temas podemos ver listados todos los temas de GuiaDev. Los usuarios no tienen acceso a crear, editar ni a eliminar los temas, sólo el administrador puede hacerlo, como se muestra en el siguiente gif.
 
-![gif temas CRUD](temasCRUD.gif "Temas CRUD")
+![gif temas CRUD](img/crudTemas.gif "Temas CRUD")
 
-Si hacemos click en uno de los temas hacedemos a su contenido. Un tema puede tener (o puede no tener) uno o varios capítulos para separar los Post por las distintas temáticas. Al igual que los temas, los capítulos de estos sólo los podrá crear, editar y eliminar el administrador.
+Todo el CRUD del tema es reactivo, no se recarga la página para actualizar los cambios en la base de datos y se muestran los cambios al instante.
+
+##### Capítulos
+
+Si hacemos click en uno de los temas hacedemos a su contenido. Un tema puede tener ningún capítulo o varios para separar los Post por las distintas temáticas. Al igual que los temas, los capítulos de estos sólo los podrá crear, editar y eliminar el administrador.
+
+En esta página podemos ver los Post del tema seleccionado clasaificados por capítulos. Y los post que no pertenezcan a ningún capítulo se mostrarán por separado.
+
+Para el CRUD de los capítulos (sólo los usuarios con un determinado rol pueden acceder) se abre un modal con todas las opciones. Lo más destacado en este modal es que los capítulos se pueden ordenar con **Drag and Drop** de **Sortable**. Como en todas las actualizaciones, cambiar el orden de los capítulos también es reactivo. Además se pueden crear, editar, y eliminar los capítulos. Los capítulos que tengan algún Post dentro no se podrán eliminar, se deberán mover o eliminar todos los Post que contenga.
+
+![gif temas CRUD](img/crudCapitulos.gif "Temas CRUD")
 
 ##### Añadir Funcionalidades
 
