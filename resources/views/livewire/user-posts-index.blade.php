@@ -107,7 +107,10 @@
                         </tr>
                         @endforelse
                     </tbody>
+                    <tfoot>
+                    </tfoot>
                 </table>
+                {{$posts->links()}}
                 @else
                     <h2 class="p-3">No has creado ningún Post todavía.</h2>
                 @endif

@@ -124,8 +124,5 @@ Para el CRUD de los capítulos (sólo los usuarios con un determinado rol pueden
 
 ![gif temas CRUD](img/crudCapitulos.gif "Temas CRUD")
 
-##### Añadir Funcionalidades
 
-- Subir imágenes en ckEditor
-- Añadir comentarios en los Posts
 

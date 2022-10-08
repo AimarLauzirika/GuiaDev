@@ -1,6 +1,12 @@
 <div>
     <x-slot>
     </x-slot>
+    <style>
+        .ck-editor__editable > pre{
+            background-color: rgb(43, 47, 47);
+            border-radius: 6px;
+        }
+    </style>
     
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

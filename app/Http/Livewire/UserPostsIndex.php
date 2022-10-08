@@ -10,7 +10,6 @@ use Livewire\Component;
 class UserPostsIndex extends Component
 {
     public $subjects;
-    public $posts;
 
     public $filterSearch;
     public $filterSubjectId = '%';
@@ -26,18 +25,19 @@ class UserPostsIndex extends Component
     
     public function render()
     {
-        $this->posts = Post::where('user_id', Auth::user()->id)
-                        ->where('title', 'like', '%'.$this->filterSearch.'%')
-                        ->where('subject_id', 'like', $this->filterSubjectId)
-                        ->where('finished', 'like', $this->filterfinished)
-                        ->where('public', 'like', $this->filterPublic)
-                        ->orWhere('user_id', Auth::user()->id)
-                        ->where('description', 'like', '%'.$this->filterSearch.'%')
-                        ->where('subject_id', 'like', $this->filterSubjectId)
-                        ->where('finished', 'like', $this->filterfinished)
-                        ->where('public', 'like', $this->filterPublic)
-                        ->get();
+        $posts = Post::where('user_id', Auth::user()->id)
+                    ->where('title', 'like', '%'.$this->filterSearch.'%')
+                    ->where('subject_id', 'like', $this->filterSubjectId)
+                    ->where('finished', 'like', $this->filterfinished)
+                    ->where('public', 'like', $this->filterPublic)
+                    ->orWhere('user_id', Auth::user()->id)
+                    ->where('description', 'like', '%'.$this->filterSearch.'%')
+                    ->where('subject_id', 'like', $this->filterSubjectId)
+                    ->where('finished', 'like', $this->filterfinished)
+                    ->where('public', 'like', $this->filterPublic)
+                    ->orderBy('updated_at', 'desc')
+                    ->paginate(5);
         
-        return view('livewire.user-posts-index');
+        return view('livewire.user-posts-index', compact('posts'));
     }
 }
